@@ -12,11 +12,11 @@
       <div class="row">
         <div id="weather-detail" class="col-md-2 text-center my-3"
           *ngFor="let dataItem of item.value">
-          <div *ngFor="let w of dataItem.weather">
-            <img class="d-inline-block align-top image-size" src="{{getImageSrcUrl(w.icon)}}" alt=""/>
-            <p title="Description">
-              {{ w.description }}
-            </p>
+          <div *ngFor="let weather of dataItem.weather">
+            <img class="d-inline-block align-top image-size" src="{{getImageSrcUrl(weather.icon)}}" alt=""/>
+            <ng-container [ngTemplateOutlet]="weatherDescTemplate"
+              [ngTemplateOutletContext]="{w:weather}">
+            </ng-container>
           </div>
 
           <p title="Time" class="weather-time">
@@ -35,3 +35,9 @@
     </div>
   </div>
 </div>
+
+<ng-template #weatherDescTemplate let-weatherObj='w'>
+  <p title="Description">
+    {{ weatherObj.description }}
+  </p>
+</ng-template>

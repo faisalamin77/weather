@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { groupBy, sortBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { DataService } from '../../data/data.service';
@@ -16,18 +17,28 @@ export class WeatherForecastComponent implements OnInit {
 
   forecastForm: FormGroup;
   locations: Observable<string[]>;
+  translations: any;
   data: { [key: string]: WeatherForecastData[] } | null = null;
 
   constructor(private formBuilder: FormBuilder,
-              private dataService: DataService) {}
+              private dataService: DataService,
+              private translate: TranslateService) {}
 
   get controls(): { [key: string]: AbstractControl; } {
     return this.forecastForm.controls;
   }
 
   ngOnInit(): void {
+    this.loadTranslations();
     this.forecastForm = this.createFormModel();
     this.populateLocations();
+  }
+
+  private loadTranslations(): void {
+    this.translate.get('weather')
+      .subscribe(translations => {
+        this.translations = translations;
+      });
   }
 
   private createFormModel(): FormGroup {
@@ -41,7 +52,7 @@ export class WeatherForecastComponent implements OnInit {
   }
 
   getWeather(value: string): void {
-    if (value === this.SELECT_LOCATION_PLACEHOLDER) {
+    if (value === this.translations['select.placeholder']) {
       this.data = null;
       return;
     }

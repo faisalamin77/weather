@@ -1,7 +1,7 @@
 <div class="container border my-3 p-0">
   <div class="bg-primary text-white rounded p-3 page-header">
     <h2 class="page-title">
-      WEATHER
+      {{'weather.title' | translate}}
     </h2>
 
     <form [formGroup]="forecastForm">
@@ -9,7 +9,7 @@
         <select id="location" class="custom-select" formControlName="location"
           title="Select location to search weather for"
           (change)="getWeather(controls.location.value)">
-          <option>{{SELECT_LOCATION_PLACEHOLDER}}</option>
+          <option>{{'weather.select.placeholder' | translate}}</option>
           <option *ngFor="let location of locations | async">
             {{ location }}
           </option>
@@ -20,8 +20,8 @@
 
   <div *ngIf="!data" class="row">
     <div class="col-lg-12 text-center">
-      <h1 class="mt-5">Real-Time UK Weather Data App</h1>
-      <p class="lead">Retrieve instant, accurate weather information for UK major cities</p>
+      <h1 class="mt-5">{{"weather.search.data.noresults.panel.title" | translate}}</h1>
+      <p class="lead">{{"weather.search.data.noresults.panel.message" | translate}}</p>
     </div>
   </div>
 

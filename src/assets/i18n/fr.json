@@ -1,0 +1,8 @@
+{
+	"weather": {
+		"title": "Formulaire De Connexion",
+		"select.placeholder": "Nom d'utilisateur",
+		"search.data.noresults.panel.title": "Nom D'Utilisateur Ici",
+		"search.data.noresults.panel.message": "Créer Un Nouveau CompteCréer Un Nouveau Compte"
+	}
+}

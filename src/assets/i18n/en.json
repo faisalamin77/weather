@@ -1,0 +1,8 @@
+{
+	"weather": {
+		"title": "Weather",
+		"select.placeholder": "Select location",
+		"search.data.noresults.panel.title": "Real-Time UK Weather Data App",
+		"search.data.noresults.panel.message": "Retrieve instant, accurate weather information for UK major cities"
+	}
+}
