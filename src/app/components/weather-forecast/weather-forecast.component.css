@@ -1,0 +1,9 @@
+.page-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-size {
+    width: 30px;
+    height: 30px;
+}

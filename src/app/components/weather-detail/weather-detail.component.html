@@ -1,0 +1,37 @@
+<h2 class="text-left my-4">
+  {{location}}
+</h2>
+
+<div *ngIf="data">
+  <div id="weather-detail" *ngFor="let item of data | keyvalue; let index = index" class="border my-3 rounded">
+    <div *ngIf="index < 5">
+      <h3 class="bg-dark text-white p-2">
+        {{item.value[0].date | date: 'EEEE'}}
+      </h3>
+
+      <div class="row">
+        <div id="weather-detail" class="col-md-2 text-center my-3"
+          *ngFor="let dataItem of item.value">
+          <div *ngFor="let w of dataItem.weather">
+            <img class="d-inline-block align-top image-size" src="{{getImageSrcUrl(w.icon)}}" alt=""/>
+            <p title="Description">
+              {{ w.description }}
+            </p>
+          </div>
+
+          <p title="Time" class="weather-time">
+            {{ dataItem.date | date: 'h:mm a' }}
+          </p>
+
+          <p title="Temperature">
+            {{ dataItem.temperature | number:'1.0-0' }} °C
+          </p>
+
+          <p title="Wind speed">
+            {{ dataItem.windSpeed | number:'1.0-1' }}m/s
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
