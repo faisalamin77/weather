@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 export class WeatherDetailComponent {
 
   @Input() location: string | null = null;
-  @Input() data: { [key: string]: WeatherForecastData[] } = {};
+  @Input() data: { [key: number]: WeatherForecastData[] } = {};
 
   getImageSrcUrl(iconCode: string): string {
     return `${environment.BASE_URL}/img/w/${iconCode}.png`;

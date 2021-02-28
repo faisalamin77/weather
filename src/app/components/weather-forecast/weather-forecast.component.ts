@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { groupBy, sortBy } from 'lodash';
+import { groupBy } from 'lodash';
 import { Observable } from 'rxjs';
 import { DataService } from '../../data/data.service';
 import { WeatherForecastData } from '../../data/weather-data';
@@ -18,7 +18,7 @@ export class WeatherForecastComponent implements OnInit {
   forecastForm: FormGroup;
   locations: Observable<string[]>;
   translations: any;
-  data: { [key: string]: WeatherForecastData[] } | null = null;
+  data: { [key: number]: WeatherForecastData[] } | null;
 
   constructor(private formBuilder: FormBuilder,
               private dataService: DataService,
@@ -77,13 +77,13 @@ export class WeatherForecastComponent implements OnInit {
       } as WeatherForecastData;
     });
 
-    this.data = this.groupByButMaintainSortOrder(weatherData, 'day');
+    this.data = groupBy(weatherData, 'day');
   }
 
-  private groupByButMaintainSortOrder(data: WeatherForecastData[], property: string):
+  /* private groupByButMaintainSortOrder(data: WeatherForecastData[], property: string):
     { [key: string]: WeatherForecastData[] } {
     return sortBy(
       groupBy(data, property), (group) => data.indexOf(group[0])
     );
-  }
+  } */
 }
